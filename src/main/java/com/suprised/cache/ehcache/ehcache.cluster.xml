@@ -1,0 +1,345 @@
+<?xml version="1.0" encoding="GBK"?>
+<ehcache>
+  <cacheManagerPeerProviderFactory class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory" properties="peerDiscovery=automatic, multicastGroupAddress=230.0.0.1, multicastGroupPort=4446, timeToLive=32" />
+  <cacheManagerPeerListenerFactory class="net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory" properties="hostName=localhost,port=51000, socketTimeoutMillis=120000" />
+  
+
+    
+  <!-- Sets the path to the directory where cache .data files are created.
+
+         If the path is a Java System Property it is replaced by
+         its value in the running VM.
+
+         The following properties are translated:
+         user.home - User's home directory
+         user.dir - User's current working directory
+         java.io.tmpdir - Default temp file path -->
+  
+    
+  <diskStore path="java.io.tmpdir" />
+  
+
+
+    
+  <!--Default Cache configuration. These will applied to caches programmatically created through
+        the CacheManager.
+
+        The following attributes are required:
+
+        设定内存中创建对象的最大值。
+        maxInMemory                    - Sets the maximum number of objects that will be created in memory
+
+        设置元素（译注：内存中对象）是否永久驻留。如果是，将忽略超时限制且元素永不消亡。
+        eternal                        - Sets whether elements are eternal. If eternal,  timeouts are ignored and the
+                                         element is never expired.
+
+        设置当内存中缓存达到 maxInMemory 限制时元素是否可写到磁盘上。
+        overflowToDisk                 - Sets whether elements can overflow to disk when the in-memory cache
+                                         has reached the maxInMemory limit.
+
+        The following attributes are optional:
+        设置某个元素消亡前的停顿时间。也就是在一个元素消亡之前，两次访问时间的最大时间间隔值。
+        这只能在元素不是永久驻留时有效（译注：如果对象永恒不灭，则设置该属性也无用）。
+        如果该值是 0 就意味着元素可以停顿无穷长的时间。
+        timeToIdleSeconds              - Sets the time to idle for an element before it expires.
+                                         i.e. The maximum amount of time between accesses before an element expires
+                                         Is only used if the element is not eternal.
+                                         Optional attribute. A value of 0 means that an Element can idle for infinity.
+                                         The default value is 0.
+
+        为元素设置消亡前的生存时间。也就是一个元素从构建到消亡的最大时间间隔值,这只能在元素不是永久驻留时有效。
+        timeToLiveSeconds              - Sets the time to live for an element before it expires.
+                                         i.e. The maximum time between creation time and when an element expires.
+                                         Is only used if the element is not eternal.
+                                         Optional attribute. A value of 0 means that and Element can live for infinity.
+                                         The default value is 0.
+
+        diskPersistent                 - Whether the disk store persists between restarts of the Virtual Machine.
+                                         The default value is false.
+        diskExpiryThreadIntervalSeconds- The number of seconds between runs of the disk expiry thread. The default value
+                                         is 120 seconds.
+        -->
+  
+
+    
+  <defaultCache maxElementsInMemory="1000" eternal="false" timeToIdleSeconds="60" diskPersistent="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </defaultCache>
+  
+
+    
+  <cache name="DEFAULT_CACHE" maxElementsInMemory="10000" eternal="true" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+
+    
+  <cache name="SDKDATA_CACHE" maxElementsInMemory="20000" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false" diskPersistent="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+
+   
+  <cache name="SDKDATA_USER_CACHE" maxElementsInMemory="5000" eternal="false" timeToIdleSeconds="600" overflowToDisk="false" diskPersistent="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+
+    
+  <cache name="WEBDATA_CACHE" maxElementsInMemory="5000" eternal="false" timeToLiveSeconds="600" overflowToDisk="false" diskPersistent="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+
+    
+  <cache name="com.dascom.dafc.appserver.model.displayItem.hibernate.DisplayItemImpl" maxElementsInMemory="2000" eternal="false" timeToIdleSeconds="600">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.dafc.appserver.model.portal.hibernate.AnnounceMentImpl" maxElementsInMemory="1000" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.dafc.appserver.model.forum.hibernate.ForumImpl" maxElementsInMemory="1000" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.dafc.appserver.model.chat.hibernate.ChatRoomImpl" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+
+    
+  <cache name="com.dascom.dafc.appserver.model.dictionary.hibernate.DictionaryImpl" maxElementsInMemory="10000" eternal="true" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.dafc.appserver.model.dictionary.hibernate.DictionaryImpl.children" maxElementsInMemory="2000" eternal="true" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.elearning.appserver.model.dictionary.hibernate.CurriculumImpl" maxElementsInMemory="1000" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.elearning.appserver.model.dictionary.hibernate.InstitutionTypeImpl" maxElementsInMemory="200" eternal="true" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.elearning.appserver.model.dictionary.hibernate.LevelTypeImpl" maxElementsInMemory="200" eternal="true" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.elearning.appserver.model.enterprise.hibernate.EnterpriseImpl" maxElementsInMemory="500" eternal="false" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.elearning.appserver.model.dictionary.hibernate.AcademyImpl" maxElementsInMemory="5000" eternal="false" timeToIdleSeconds="3600" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.elearning.appserver.model.dictionary.hibernate.AcademyImpl.children" maxElementsInMemory="5000" eternal="false" timeToIdleSeconds="3600" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.dafc.appserver.model.activity.hibernate.SurveyImpl" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.dafc.appserver.model.activity.hibernate.SurveyImpl.items" maxElementsInMemory="500" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.dafc.appserver.model.activity.hibernate.SurveyItemImpl" maxElementsInMemory="500" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+
+    
+  <cache name="com.dascom.elearning.appserver.model.menu.hibernate.MenuItemImpl" maxElementsInMemory="500" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+
+    
+  <cache name="com.dascom.elearning.appserver.model.menu.hibernate.MenuItemImpl.children" maxElementsInMemory="500" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+
+    
+  <cache name="com.dascom.dafc.appserver.model.security.hibernate.RoleImpl" maxElementsInMemory="100" eternal="true" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.dafc.appserver.model.security.hibernate.UserExtentImpl" maxElementsInMemory="10000" eternal="false" timeToIdleSeconds="3600">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.dafc.appserver.model.security.hibernate.UserExtentImpl.children" maxElementsInMemory="1000" eternal="false" timeToIdleSeconds="3600">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+
+    
+  <cache name="com.dascom.dafc.appserver.model.portal.hibernate.PortalSiteImpl" maxElementsInMemory="20" eternal="false" timeToIdleSeconds="3600">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.dafc.appserver.model.portal.hibernate.PortalSiteImpl.references" maxElementsInMemory="20" eternal="false" timeToIdleSeconds="3600">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.dafc.appserver.model.portal.hibernate.PortalInstanceImpl" maxElementsInMemory="2000" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.dafc.appserver.model.style.hibernate.StyleImpl" maxElementsInMemory="1000" eternal="true" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.dafc.appserver.model.portal.hibernate.PortalLayoutImpl" maxElementsInMemory="5000" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.dafc.appserver.model.portal.hibernate.PortalBlockImpl" maxElementsInMemory="500" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.dafc.appserver.model.portal.hibernate.BlockInstanceImpl" maxElementsInMemory="5000" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+
+    
+  <cache name="com.dascom.dafc.appserver.model.portal.hibernate.BlockItemImpl" maxElementsInMemory="5000" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.dafc.appserver.model.portal.hibernate.BlockItemContainerImpl.blockItems" maxElementsInMemory="5000" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+
+    
+  <cache name="com.dascom.elearning.appserver.model.base.hibernate.EnabledObjectImpl" maxElementsInMemory="5000" eternal="false" timeToIdleSeconds="600" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.elearning.appserver.model.assessment.hibernate.AssessmentImpl" maxElementsInMemory="5000" eternal="false" timeToIdleSeconds="600" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.elearning.appserver.model.base.hibernate.course.CourseImpl" maxElementsInMemory="100" eternal="true" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.elearning.appserver.model.base.hibernate.classes.TeachingClassImpl" maxElementsInMemory="500" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.elearning.appserver.model.base.hibernate.course.LearningObjectImpl" maxElementsInMemory="5000" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.elearning.appserver.model.base.hibernate.course.LearningObjectImpl.children" maxElementsInMemory="5000" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.elearning.appserver.model.base.hibernate.course.LearningObjectImpl.properties" maxElementsInMemory="5000" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.elearning.appserver.model.base.hibernate.course.LOPropertyImpl" maxElementsInMemory="5000" eternal="false" timeToIdleSeconds="600" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.elearning.appserver.model.base.hibernate.course.AssignmentImpl" maxElementsInMemory="1000" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.elearning.appserver.model.base.hibernate.resource.CourseResourceImpl" maxElementsInMemory="1000" eternal="false" timeToIdleSeconds="600" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.elearning.appserver.model.base.hibernate.resource.AssetResourceImpl" maxElementsInMemory="1000" eternal="false" timeToIdleSeconds="600" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.elearning.appserver.model.base.hibernate.course.TestImpl" maxElementsInMemory="1000" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.elearning.appserver.model.base.hibernate.course.QuestionImpl" maxElementsInMemory="1000" eternal="false" timeToIdleSeconds="600" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+
+    
+  <cache name="com.dascom.dafc.appserver.model.custom.hibernate.PageStorageImpl" maxElementsInMemory="1000" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+
+    
+  <cache name="com.dascom.sperc.appserver.model.hibernate.SpecialityImpl" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.sperc.appserver.model.hibernate.SpecialityImpl.children" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.sperc.appserver.model.hibernate.SpecialityNavcatalogImpl" maxElementsInMemory="2000" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.sperc.appserver.model.hibernate.SpecialityNavcatalogImpl.children" maxElementsInMemory="2000" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+    
+  <cache name="com.dascom.jpkc.appserver.model.hibernate.ApplyItemImpl" maxElementsInMemory="100" eternal="false" timeToIdleSeconds="1800" overflowToDisk="false">
+    <cacheEventListenerFactory class="net.sf.ehcache.distribution.RMICacheReplicatorFactory" properties="replicateAsynchronously=true, replicatePuts=true,replicateUpdates=true, replicateUpdatesViaCopy=false, replicateRemovals=true" />
+  </cache>
+  
+
+</ehcache>
+

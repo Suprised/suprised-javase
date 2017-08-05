@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dictionary>
+	<dics key="robin.supportType" desc="支持类型">
+	<dic code="1" title="售前支持类型">
+		<dic code="10" title="提供建设方案">
+		  <dic code="5" title="其它支持">
+		    <dic code="51" title="寄送产品盒" />
+		    <dic code="52" title="寄送发票" />
+		    <dic code="53" title="其他内容" />
+      </dic>
+		</dic>
+		<dic code="11" title="提供招投标方案" />
+		<dic code="12" title="协议审核盖章快递" />
+		<dic code="13" title="协议归档" />
+		<dic code="14" title="代理授权" />
+		<dic code="15" title="搭建演示环境" />
+		<dic code="16" title="出差参与投标" />
+		<dic code="17" title="中标书归档" />
+		<dic code="18" title="合同审核盖章快递" />
+		<dic code="19" title="合同归档" />
+	</dic>
+	<dic code="2" title="售后支持类型">
+		<dic code="21" title="远程安装升级" />
+		<dic code="22" title="出差安装升级" />
+		<dic code="23" title="出差培训" />
+		<dic code="24" title="提供验收方案" />
+		<dic code="25" title="出差验收" />
+		<dic code="26" title="提供项目实施方案" />
+		<dic code="27" title="提供课程制作实施方案" />
+		<dic code="28" title="出差沟通" />
+		<dic code="29" title="出差其他" />
+	</dic>
+	<dic code="3" title="需求支持">
+		<dic code="31" title="远程沟通需求" />
+		<dic code="32" title="出差沟通需求" />
+		<dic code="33" title="项目成本评估" />
+	</dic>
+	<dic code="4" title="开发支持">
+		<dic code="41" title="系统集成" />
+		<dic code="42" title="重大问题修改" />
+		<dic code="43" title="二次开发" />
+	</dic>
+	<dic code="5" title="其它支持">
+		<dic code="51" title="寄送产品盒" />
+		<dic code="52" title="寄送发票" />
+		<dic code="53" title="其他内容" />
+	</dic>
+</dics>
+<dics key="robin.visitType">
+  <dic code="1" title="管理员培训" />
+  <dic code="2" title="到访需求沟通" />
+  <dic code="3" title="到访技术支持" />
+</dics>
+	<dics key="robin.fundName">
+	<dic code="1" title="投标保证金" />
+	<dic code="2" title="中标服务费" />
+	<dic code="3" title="合同款" />
+	<dic code="4" title="质保金" />
+</dics>
+</dictionary>

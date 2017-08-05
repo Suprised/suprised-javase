@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"  
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd"
+	default-lazy-init="true">
+
+	<description>Spring公共配置 </description>
+
+    <!-- 将AspectJ注解所标记的Bean转变为代理通知 -->
+	<aop:aspectj-autoproxy />
+
+	<!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
+	<context:component-scan base-package="com.suprised.spring">
+		<!--
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+		<context:exclude-filter type="annotation" expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
+		-->
+		<!-- 使用过滤器  包含实现了WritedBeanInterface接口的类 而不需要是用Component注解 -->
+		<!--<context:include-filter type="assignable" expression="com.suprised.spring.WritedBeanInterface"/>	
+	--></context:component-scan>
+	
+	<!-- 将多个配置文件读取到容器中，交给Spring管理 -->  
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">  
+        <property name="locations">  
+           <list>  
+              <value>classpath*:spring/configFile.properties</value>
+              <value>classpath*:spring/application.properties</value>  
+            </list>  
+        </property>  
+    </bean>  
+    
+     <!--<context:property-placeholder location="classpath:spring/configFile.properties" ignore-unresolvable="true"/>
+    
+
+	--><!-- JSR303 Validator定义 
+ 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" />-->
+	
+</beans>
