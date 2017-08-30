@@ -2,8 +2,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>suprised-javase</groupId>
-	<artifactId>com.suprised</artifactId>
+	<groupId>com.suprised</groupId>
+	<artifactId>suprised-javase</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
@@ -20,7 +20,7 @@
 		<quartz.version>2.2.1</quartz.version>
 		<commons-lang.version>3.3.1</commons-lang.version>
 		<jackson.version>2.3.3</jackson.version>
-		<spring.version>3.1.0.RELEASE</spring.version>
+		<spring.version>3.2.4.RELEASE</spring.version>
 		<dozer.version>5.4.0</dozer.version>
 		<poi.version>3.9</poi.version>
 		<joda.version>2.3</joda.version>
@@ -31,6 +31,14 @@
 
 	<dependencies>
 	
+		<!-- Rxjava -->
+		<dependency>
+		    <groupId>io.reactivex.rxjava2</groupId>
+		    <artifactId>rxjava</artifactId>
+		    <version>2.0.7</version>
+		</dependency>
+		
+		
 		<!-- 自定义的jar包 -->
 		<dependency>
 			<groupId>com.dascom</groupId>
@@ -479,6 +487,16 @@
 					<warName>${project.artifactId}</warName>
 				</configuration>
 			</plugin>
+			
+			<plugin>  
+	            <groupId>org.apache.maven.plugins</groupId>  
+	            <artifactId>maven-compiler-plugin</artifactId>  
+	            <version>2.0.2</version>  
+	            <configuration>  
+	                <source>1.7</source>  
+	                <target>1.7</target>  
+	            </configuration>  
+	        </plugin> 
 			
 			<!-- jetty插件, 设定context path与spring profile -->
 			<plugin>
