@@ -37,7 +37,6 @@ import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
 
-import com.cloverworxs.common.Pagination;
 import com.google.common.collect.Lists;
 import com.suprised.lucene.index.Costs;
 

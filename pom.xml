@@ -40,16 +40,16 @@
 		
 		
 		<!-- 自定义的jar包 -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>com.dascom</groupId>
 			<artifactId>com.dascom</artifactId>
 			<version>1.0</version>
-		</dependency>
-		<dependency>
+		</dependency> -->
+		<!-- <dependency>
 			<groupId>ikanalyzer</groupId>
 			<artifactId>ikanalyzer</artifactId>
 			<version>1.0</version>
-		</dependency>
+		</dependency> -->
 		
 		<!--  J2EE -->
 		<dependency>
@@ -180,11 +180,11 @@
 			<artifactId>spring-expression</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-asm</artifactId>
 			<version>${spring.version}</version>
-		</dependency>
+		</dependency> -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>

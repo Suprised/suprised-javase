@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.cloverworxs.common.Pagination;
 import com.suprised.lucene.demo.LuceneIndexBean;
 import com.suprised.lucene.demo.LuceneInstance;
+import com.suprised.lucene.demo.Pagination;
 
 /**
  * Servlet implementation class WeiboServlet
