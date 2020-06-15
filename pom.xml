@@ -20,7 +20,7 @@
 		<quartz.version>2.2.1</quartz.version>
 		<commons-lang.version>3.3.1</commons-lang.version>
 		<jackson.version>2.3.3</jackson.version>
-		<spring.version>3.2.4.RELEASE</spring.version>
+		<spring.version>5.2.7.RELEASE</spring.version>
 		<dozer.version>5.4.0</dozer.version>
 		<poi.version>3.9</poi.version>
 		<joda.version>2.3</joda.version>
