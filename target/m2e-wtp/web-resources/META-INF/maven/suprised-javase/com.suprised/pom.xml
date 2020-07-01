@@ -17,7 +17,7 @@
 		<dom4j.version>1.6.1</dom4j.version>
 		<guava.version>16.0.1</guava.version>
 		<jaxen.version>1.1.6</jaxen.version>
-		<quartz.version>2.2.1</quartz.version>
+		<quartz.version>2.3.2</quartz.version>
 		<commons-lang.version>3.3.1</commons-lang.version>
 		<jackson.version>2.3.3</jackson.version>
 		<spring.version>3.1.0.RELEASE</spring.version>
